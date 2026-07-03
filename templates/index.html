@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Genre Predictor</title>
+    <!-- Google Fonts: Outfit for Headings, Inter for Body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Background glowing ambient elements -->
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+
+    <div class="app-container">
+        <header class="main-header glass">
+           <div class="logo-container">
+              <span class="logo-text">🎬 Movie Genre Predictor</span>
+           </div>
+
+           <div class="header-right">
+                <button id="theme-toggle" class="theme-btn">
+                      🌙
+                </button>
+           </div>
+        </header>
+
+        <!-- Centered Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Hero Section -->
+            <section class="hero-section glass animate-fade-in">
+                <h1 class="hero-title">Predict Movie Genres <br>using <span class="glow-text">Machine Learning</span></h1>
+                <p class="hero-description">
+                    Enter a movie description below and click the Predict Genre button to identify the most suitable movie genre using our machine learning model.
+                </p>
+            </section>
+
+            <!-- Predictor Section -->
+            <section id="predictor" class="section-container animate-fade-in delay-1">
+                <div class="predictor-card glass">
+                    <div class="predictor-header">
+                        <div class="header-title">
+                            <i data-lucide="text-cursor-input" class="cyan-icon"></i>
+                            <h2>Movie Description</h2>
+                        </div>
+                        <button id="clear-btn" class="btn-secondary"><i data-lucide="rotate-ccw"></i> Clear</button>
+                    </div>
+                    
+                    <div class="textarea-wrapper">
+                        <textarea id="movie-desc" placeholder="Write or paste the movie plot summary here... (e.g., 'A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival...')" maxlength="2000"></textarea>
+                        <div class="textarea-footer">
+                            <span id="word-count">0 words</span>
+                            <span id="char-count">0 / 2000 characters</span>
+                        </div>
+                    </div>
+
+                    <button id="predict-btn" class="btn-primary">
+                        <span class="btn-text">Predict Genre</span>
+                        <i data-lucide="arrow-right" class="btn-arrow"></i>
+                    </button>
+                </div>
+
+                <!-- Loading / Result Container -->
+                <div id="result-container" class="result-wrapper hidden">
+                    
+                    <!-- Loading State -->
+                    <div id="prediction-loading" class="prediction-card loading-card glass hidden">
+                        <div class="loader-content">
+                            <div class="film-spinner">
+                                <div class="spinner-circle"></div>
+                                <i data-lucide="film" class="spinner-icon"></i>
+                            </div>
+                            <h3>Analyzing Text...</h3>
+                        </div>
+                    </div>
+
+                    <!-- Result Card -->
+                    <div id="prediction-result" class="prediction-card result-card glass hidden">
+                        <div class="result-header">
+                            <div class="result-badge">
+                                <i data-lucide="check-circle-2"></i> Prediction Complete
+                            </div>
+                            <span class="timestamp" id="result-time">Just now</span>
+                        </div>
+                        
+                        <div class="result-body">
+                            <div class="result-main">
+                                <div class="genre-icon-box" id="genre-icon-wrapper">
+                                    <i data-lucide="film" id="genre-icon"></i>
+                                </div>
+                                <div class="genre-info-text">
+                                    <span class="result-label">Predicted Genre</span>
+                                    <h2 class="predicted-genre-title" id="predicted-genre-name">Drama</h2>
+                                    <p class="genre-description-tag" id="predicted-genre-tagline">Captivating stories exploring human emotions and conflicts.</p>
+                                </div>
+                            </div>
+
+                            <div class="result-details">
+                                <div class="details-box">
+                                    <h4>Processed Text Preview</h4>
+                                    <p class="processed-text-preview" id="cleaned-text-preview">
+                                        "cleaned text preview will appear here..."
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Project Section -->
+            <section id="about" class="section-container animate-fade-in delay-2">
+                <div class="about-card glass">
+                    <div class="about-header">
+                        <i data-lucide="info" class="violet-icon"></i>
+                        <h2>About Project</h2>
+                    </div>
+                    <div class="about-body">
+                        <p>
+                            Movie Genre Predictor is a machine learning project that predicts the genre of a movie based on its description. The system uses Natural Language Processing (NLP) techniques to analyze the text and classify it into the most appropriate genre.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="main-footer glass">
+            <p>&copy; 2026 Movie Genre Predictor. All Rights Reserved.</p>
+            <div class="footer-links">
+                <span>Dataset: IMDb</span>
+                <span>•</span>
+                <span>Algorithm: TF-IDF + LinearSVC</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
